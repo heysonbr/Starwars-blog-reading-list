@@ -1,0 +1,17 @@
+.scrollable-div {
+  display: flex;
+  overflow-x: scroll;
+}
+
+.card {
+  flex: 0 0 auto;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* h2 {
+  font-family: "Bungee Shade", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+} */
