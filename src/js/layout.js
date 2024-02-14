@@ -6,6 +6,7 @@ import { Home } from "./views/home";
 import { Demo } from "./views/demo";
 import { Single } from "./views/single";
 import General from "./views/general";
+import LearnMore from "./views/learnmore";
 
 import injectContext from "./store/appContext";
 
@@ -26,7 +27,7 @@ const Layout = () => {
           <Routes>
             <Route path="/" element={<General />} />
             <Route path="/demo" element={<Demo />} />
-            <Route path="/single/:theid" element={<Single />} />
+            <Route path="/learnmore/:theid" element={<LearnMore />} />
             <Route path="*" element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />

@@ -28,6 +28,7 @@ const General = () => {
           {characters.map((character, index) => (
             <Cards
               key={index}
+              img={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`}
               title={character.name}
               text={
                 <>
@@ -50,6 +51,7 @@ const General = () => {
           {planets.map((planet, index) => (
             <Cards
               key={index}
+              img={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`}
               title={planet.name}
               text={
                 <>
@@ -70,6 +72,7 @@ const General = () => {
           {vehicles.map((vehicle, index) => (
             <Cards
               key={index}
+              img={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`}
               title={vehicle.name}
               text={
                 <>

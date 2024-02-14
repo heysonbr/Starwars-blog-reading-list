@@ -23,11 +23,18 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json(); // Convierte la respuesta en JSON
 
           // Hacer solicitudes adicionales para obtener detalles de cada personaje
-          const characterDetailsPromises = data.results.map(
-            (character) =>
-              fetch(character.url)
-                .then((res) => res.json())
-                .then((data) => data.result.properties) // Accede a result.properties
+          const characterDetailsPromises = data.results.map((character) =>
+            fetch(character.url)
+              .then((res) => {
+                if (!res.ok) {
+                  throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+              })
+              .then((data) => ({
+                ...data.result.properties, // Mantén las propiedades existentes
+                uid: character.uid, // Agrega la uid
+              }))
           );
 
           const charactersWithDetails = await Promise.all(
@@ -60,11 +67,13 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json(); // Convierte la respuesta en JSON
 
           // Hacer solicitudes adicionales para obtener detalles de cada personaje
-          const planetDetailsPromises = data.results.map(
-            (planet) =>
-              fetch(planet.url)
-                .then((res) => res.json())
-                .then((data) => data.result.properties) // Accede a result.properties
+          const planetDetailsPromises = data.results.map((planet) =>
+            fetch(planet.url)
+              .then((res) => res.json())
+              .then((data) => ({
+                ...data.result.properties, // Mantén las propiedades existentes
+                uid: planet.uid, // Agrega la uid
+              }))
           );
 
           const planetsWithDetails = await Promise.all(planetDetailsPromises);
@@ -95,11 +104,13 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await response.json(); // Convierte la respuesta en JSON
 
           // Hacer solicitudes adicionales para obtener detalles de cada vehículo
-          const vehicleDetailsPromises = data.results.map(
-            (vehicle) =>
-              fetch(vehicle.url)
-                .then((res) => res.json())
-                .then((data) => data.result.properties) // Accede a result.properties
+          const vehicleDetailsPromises = data.results.map((vehicle) =>
+            fetch(vehicle.url)
+              .then((res) => res.json())
+              .then((data) => ({
+                ...data.result.properties, // Mantén las propiedades existentes
+                uid: vehicle.uid, // Agrega la uid
+              }))
           );
 
           const vehiclesWithDetails = await Promise.all(vehicleDetailsPromises);

@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../store/appContext";
+import { Link } from "react-router-dom";
 
 function Cards(props) {
   const { actions } = useContext(Context);
@@ -24,7 +25,9 @@ function Cards(props) {
             "Some quick example text to build on the card title and make up the bulk of the card's content."}
         </Card.Text>
         <div className="d-flex ">
-          <Button variant="primary me-5">Learn more!</Button>
+          <Link to="/learnmore/:theid">
+            <Button variant="primary me-5">Learn more!</Button>
+          </Link>
           <Button
             variant="btn btn-outline-warning ms-4"
             onClick={props.favoriteButton}
