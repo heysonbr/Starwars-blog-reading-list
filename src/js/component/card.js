@@ -25,7 +25,7 @@ function Cards(props) {
             "Some quick example text to build on the card title and make up the bulk of the card's content."}
         </Card.Text>
         <div className="d-flex ">
-          <Link to="/learnmore/:theid">
+          <Link to={`/learnmore/${props.type}/${props.uid}`}>
             <Button variant="primary me-5">Learn more!</Button>
           </Link>
           <Button

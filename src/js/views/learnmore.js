@@ -1,21 +1,29 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
-
-// const [info, setInfo] = useState([]);
+import { useParams } from "react-router-dom";
 
 const LearnMore = (props) => {
+  const { uid, type, name } = useParams();
+
+  const [info, setInfo] = useState(null);
+
+  useEffect(() => {
+    // Aquí puedes hacer una solicitud a la API para obtener los detalles del personaje
+    // usando el `uid` y luego guardar los detalles en el estado con `setInfo`.
+  }, [uid]);
+
   return (
     <div className="container">
       <div className="row">
         <div className="col-6">
           <img
-            src="https://www.reduam.es/images/portfolio/portfolio-1.jpg"
+            src={`https://starwars-visualguide.com/assets/img/${type}/${uid}.jpg`}
             className="img-fluid"
             alt="..."
           />
         </div>
         <div className="col-6">
-          <h1>{props.title}</h1>
+          <h1>{name}</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

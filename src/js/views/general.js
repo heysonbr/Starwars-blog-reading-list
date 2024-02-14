@@ -27,9 +27,12 @@ const General = () => {
         <div className="scrollable-div ">
           {characters.map((character, index) => (
             <Cards
+              name={character.name}
+              type="characters"
               key={index}
               img={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`}
               title={character.name}
+              uid={character.uid}
               text={
                 <>
                   Gender: {character.gender}
@@ -50,9 +53,11 @@ const General = () => {
         <div className="scrollable-div ">
           {planets.map((planet, index) => (
             <Cards
+              type="planets"
               key={index}
               img={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`}
               title={planet.name}
+              uid={planet.uid}
               text={
                 <>
                   Population: {planet.population}
@@ -71,9 +76,11 @@ const General = () => {
         <div className="scrollable-div ">
           {vehicles.map((vehicle, index) => (
             <Cards
+              type="vehicles"
               key={index}
               img={`https://starwars-visualguide.com/assets/img/vehicles/${vehicle.uid}.jpg`}
               title={vehicle.name}
+              uid={vehicle.uid}
               text={
                 <>
                   Model: {vehicle.model}
