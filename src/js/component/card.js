@@ -30,7 +30,13 @@ function Cards(props) {
           </Link>
           <Button
             variant="btn btn-outline-warning ms-4"
-            onClick={props.favoriteButton}
+            onClick={() =>
+              props.favoriteButton({
+                name: props.name,
+                entityType: props.type,
+                uid: props.uid,
+              })
+            }
           >
             <FontAwesomeIcon icon={faHeart} />
           </Button>

@@ -42,7 +42,13 @@ const General = () => {
                   Eye Color: {character.eye_color}
                 </>
               }
-              favoriteButton={() => handleFavoriteClick(character.name)}
+              favoriteButton={() =>
+                handleFavoriteClick({
+                  name: character.name,
+                  entityType: "character",
+                  uid: character.uid,
+                })
+              }
             />
           ))}
         </div>
@@ -65,7 +71,13 @@ const General = () => {
                   Terrain: {planet.terrain}
                 </>
               }
-              favoriteButton={() => handleFavoriteClick(planet.name)}
+              favoriteButton={() =>
+                handleFavoriteClick({
+                  name: planet.name,
+                  entityType: "planet",
+                  uid: planet.uid,
+                })
+              }
             />
           ))}
         </div>
@@ -88,7 +100,13 @@ const General = () => {
                   Cost in credits: {vehicle.cost_in_credits}
                 </>
               }
-              favoriteButton={() => handleFavoriteClick(vehicle.name)}
+              favoriteButton={() =>
+                handleFavoriteClick({
+                  name: vehicle.name,
+                  entityType: "vehicle",
+                  uid: vehicle.uid,
+                })
+              }
             />
           ))}
         </div>

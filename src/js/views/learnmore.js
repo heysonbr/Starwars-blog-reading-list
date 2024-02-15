@@ -2,15 +2,53 @@ import React, { useState, useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 
-const LearnMore = (props) => {
-  const { uid, type, name } = useParams();
-
+const LearnMore = () => {
+  const { type, uid } = useParams();
   const [info, setInfo] = useState(null);
+  const { actions } = useContext(Context);
+
+  const typeToFunctionMap = {
+    characters: actions.getCharacters,
+    planets: actions.getPlanets,
+    vehicles: actions.getVehicles,
+  };
+  const typeToPropertiesMap = {
+    characters: [
+      "name",
+      "birth_year",
+      "gender",
+      "height",
+      "skin_color",
+      "eye_color",
+    ],
+    planets: [
+      "name",
+      "climate",
+      "population",
+      "orbital_period",
+      "rotation_period",
+      "diameter",
+    ],
+    vehicles: [
+      "name",
+      "model",
+      "vehicle_class",
+      "passengers",
+      "crew",
+      "length" /* las propiedades de los vehículos que quieres mostrar */,
+      ,
+    ],
+  };
 
   useEffect(() => {
-    // Aquí puedes hacer una solicitud a la API para obtener los detalles del personaje
-    // usando el `uid` y luego guardar los detalles en el estado con `setInfo`.
-  }, [uid]);
+    const fetchData = async () => {
+      const data = await typeToFunctionMap[type]();
+      const item = data.find((item) => item.uid === uid);
+      setInfo(item);
+    };
+
+    fetchData();
+  }, [type, uid]);
 
   return (
     <div className="container">
@@ -23,7 +61,7 @@ const LearnMore = (props) => {
           />
         </div>
         <div className="col-6">
-          <h1>{name}</h1>
+          <h1>{info?.name}</h1>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
@@ -37,13 +75,14 @@ const LearnMore = (props) => {
       </div>
       <hr style={{ borderColor: "#0056b2" }} />
       <div className="row">
-        {/* {info.map((item, index) => (
-          <div className="col" key={index}>
-            <h2>{item.info}</h2>
-            <h4>{item.detailsInfo}</h4>
-          </div>
-        ))}
-        ; */}
+        {Object.entries(info || {})
+          .filter(([key]) => typeToPropertiesMap[type].includes(key))
+          .map(([key, value], index) => (
+            <div className="col" key={index}>
+              <h3>{key.replace("_", " ").toUpperCase()}</h3>
+              <h4>{value}</h4>
+            </div>
+          ))}
       </div>
     </div>
   );

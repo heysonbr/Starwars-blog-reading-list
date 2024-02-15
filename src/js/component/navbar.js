@@ -11,6 +11,11 @@ export const Navbar = (props) => {
   const handleRemoveClick = (favorite) => {
     actions.removeFavorite(favorite);
   };
+  // actions.addFavorite({
+  //   name: character.name, // o planet.name, o vehicle.name
+  //   entityType: "character", // o 'planet', o 'vehicle'
+  //   uid: character.uid, // o planet.uid, o vehicle.uid
+  // });
 
   return (
     <div class="container">
@@ -30,9 +35,11 @@ export const Navbar = (props) => {
           <ul class="dropdown-menu">
             {store.favorites.map((favorite, index) => (
               <li key={index} className="d-flex">
-                <a class="dropdown-item" href="#">
-                  {favorite}
-                </a>
+                <Link to={`/learnmore/${favorite.entityType}s/${favorite.uid}`}>
+                  <a class="dropdown-item" href="#">
+                    {favorite.name}
+                  </a>
+                </Link>
                 <button
                   onClick={() => handleRemoveClick(favorite)}
                   className="btn"
