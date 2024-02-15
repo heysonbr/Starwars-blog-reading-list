@@ -21,3 +21,9 @@
   height: 100px;
   background: none;
 }
+
+.card-img-top {
+  width: 100%; /* o el ancho que prefieras */
+  height: 200px; /* o la altura que prefieras */
+  object-fit: cover; /* esto asegura que la imagen cubra todo el espacio disponible sin distorsionarse */
+}

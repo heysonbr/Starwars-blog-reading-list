@@ -62,6 +62,7 @@ const General = () => {
               type="planets"
               key={index}
               img={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`}
+              defaultImg="../../img/Starwars.png"
               title={planet.name}
               uid={planet.uid}
               text={

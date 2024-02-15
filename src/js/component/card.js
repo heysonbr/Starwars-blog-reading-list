@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
+import "../../styles/home.css";
 
 function Cards(props) {
   const { actions } = useContext(Context);
@@ -16,7 +17,15 @@ function Cards(props) {
     <Card style={{ width: "18rem" }} className="m-1">
       <Card.Img
         variant="top"
-        src={props.img || "https://www.servithermic.cl/images/400X200.gif"}
+        src={
+          props.img ||
+          "https://oyster.ignimgs.com/mediawiki/apis.ign.com/star-wars-episode-7/4/4b/Tatooine-3.jpg"
+        }
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src =
+            "https://oyster.ignimgs.com/mediawiki/apis.ign.com/star-wars-episode-7/4/4b/Tatooine-3.jpg";
+        }}
       />
       <Card.Body>
         <Card.Title>{props.title || "Card Title"}</Card.Title>
