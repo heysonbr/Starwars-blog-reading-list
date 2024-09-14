@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import starWarsImage from "../../img/Starwars.png";
+import StarWarsLogo from "../../img/StarWarsLogo.png";
+
 import "../../styles/home.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -21,7 +22,7 @@ export const Navbar = (props) => {
     <div class="container">
       <nav className="navbar navbar-light bg-light mb-3 px-5">
         <Link to="/">
-          <img src={starWarsImage} alt="Star Wars" className="navbar-image" />
+          <img src={StarWarsLogo} alt="Star Wars" className="navbar-image" />
         </Link>
         <div className="ml-auto dropdown">
           <button
